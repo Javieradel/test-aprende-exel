@@ -1,0 +1,4 @@
+{
+    "ext": "html,js",
+    "watch": ["index.html", "./assets/js/index.js", "./assets/css/index.css"]
+}

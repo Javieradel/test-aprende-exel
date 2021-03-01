@@ -1,0 +1,48 @@
+/*
+    Colors
+*/
+html {
+  font-size: 20px;
+  /*font-family: "Montserrat", "sans serif";*/
+  color: #404040;
+}
+@media (max-width: 764px) {
+  html {
+    font-size: 16px;
+  }
+}
+html h1,
+html h2,
+html h3,
+html h4,
+html h5,
+html h6,
+html .h1,
+html .h2,
+html .h3,
+html .h4,
+html .h5,
+html .h6 {
+  font-family: "Montserrat";
+}
+html h1,
+html h2,
+html h3 {
+  font-weight: bold;
+}
+html .header-main {
+  /*border: rgba($color: $font-color, $alpha: .4) 1px solid;*/
+}
+html .header-main .header-cont .list-item-header {
+  list-style: none;
+}
+html .header-main .header-cont .list-item-header img {
+  width: 100%;
+  max-width: 125px;
+}
+/*
+* {
+    border: rgba($color: $font-color, $alpha: .4) 1px solid;
+}*/
+
+/*# sourceMappingURL=index.css.map */

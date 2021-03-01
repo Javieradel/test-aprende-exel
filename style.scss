@@ -1,0 +1,66 @@
+/*
+    Colors
+*/
+$primary-color: #4eaf4e;
+$background1: #fff;
+$background2: #e5e5e5;
+$font-color: #404040;
+
+html {
+    font-size: 20px;
+
+    /*font-family: "Montserrat", "sans serif";*/
+    color: #404040;
+
+    @media (max-width: 764px) {
+        font-size: 16px;
+
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6 {
+        font-family: 'Montserrat';
+    }
+
+    h1,
+    h2,
+    h3 {
+        font-weight: bold;
+    }
+
+    .header-main {
+        /*border: rgba($color: $font-color, $alpha: .4) 1px solid;*/
+
+        .header-cont {
+            .list-item-header {
+                list-style: none;
+
+                img {
+                    width: 100%;
+                    max-width: 125px;
+                }
+            }
+        }
+    }
+
+    .root {
+        .header-form {
+            .title-header {}
+        }
+    }
+}
+
+/*
+* {
+    border: rgba($color: $font-color, $alpha: .4) 1px solid;
+}*/
