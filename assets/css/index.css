@@ -40,6 +40,17 @@ html .header-main .header-cont .list-item-header img {
   width: 100%;
   max-width: 125px;
 }
+html .root .form-container .form-steped .step label .label-icon-in {
+  width: 40px;
+  fill: #404040;
+}
+html .root .form-container .form-steped .step label:hover .label-icon-in {
+  fill: #4eaf4e;
+}
+html .root .form-container .form-steped .step.act {
+  display: block !important;
+}
+
 /*
 * {
     border: rgba($color: $font-color, $alpha: .4) 1px solid;

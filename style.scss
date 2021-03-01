@@ -57,6 +57,34 @@ html {
         .header-form {
             .title-header {}
         }
+
+        .form-container {
+            .progress {}
+
+            .form-steped {
+                .step {
+                    label {
+                        .label-icon-in {
+                            width: 40px;
+                            fill: $font-color;
+
+                        }
+
+                        &:hover {
+                            .label-icon-in {
+                                fill: $primary-color;
+
+                            }
+                        }
+                    }
+
+                }
+
+                .step.act {
+                    display: block !important;
+                }
+            }
+        }
     }
 }
 
