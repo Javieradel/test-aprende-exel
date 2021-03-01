@@ -1,0 +1,19 @@
+/*
+    Colors
+*/
+html {
+  font-size: 20px;
+  /*font-family: "Montserrat", "sans serif";*/
+  color: #404040;
+}
+@media (max-width: 764px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body .main-header .main-cont .brand-icon {
+  width: 127px;
+}
+
+/*# sourceMappingURL=style.css.map */
