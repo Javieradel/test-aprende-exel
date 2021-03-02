@@ -3,7 +3,7 @@
 */
 $primary-color: #4eaf4e;
 $background1: #fff;
-$background2: #e5e5e5;
+$background2: #f5f5f5;
 $font-color: #404040;
 
 html {
@@ -39,6 +39,8 @@ html {
     }
 
     .header-main {
+        margin-bottom: 65px;
+        margin-bottom: 10vh;
         /*border: rgba($color: $font-color, $alpha: .4) 1px solid;*/
 
         .header-cont {
@@ -59,31 +61,63 @@ html {
         }
 
         .form-container {
-            .progress {}
 
-            .form-steped {
-                .step {
-                    label {
-                        .label-icon-in {
-                            width: 40px;
-                            fill: $font-color;
+            .sub-cont {
+                background-color: $background2;
+                border-radius: 15px;
 
+                .progress {
+                    margin-top: 0;
+                    margin-bottom: 30px;
+                    border-radius: 15px 15px 0 0;
+
+                    .progress-bar {
+                        background-color: rgba($color: $primary-color, $alpha: .9);
+                    }
+                }
+
+                .form-steped {
+                    min-height: 380px;
+                    min-height: 50vh;
+
+                    .step {
+
+                        label {
+                            margin: 0 auto 30px auto;
+                            padding: 5px;
+
+                            .label-icon-in {
+                                width: 40px;
+                                fill: $font-color;
+
+                            }
+
+                            &:hover {
+                                .label-icon-in {
+                                    fill: $primary-color;
+
+                                }
+                            }
                         }
 
-                        &:hover {
-                            .label-icon-in {
-                                fill: $primary-color;
-
+                        .input- {
+                            &:focus {
+                                border-color: $primary-color;
+                                box-shadow: 0 0 0 .2rem rgba($color: $primary-color, $alpha: .7);
                             }
                         }
                     }
 
+                    .step.act {
+                        display: block !important;
+                    }
                 }
 
-                .step.act {
-                    display: block !important;
+                .nav-btn {
+                    nav {}
                 }
             }
+
         }
     }
 }
