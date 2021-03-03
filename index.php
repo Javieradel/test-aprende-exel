@@ -7,8 +7,10 @@
     $develop ? $ip = '45.186.147.43' : $ip = $_SERVER['REMOTE_ADDR'];
     $coutry= determineCt($ip);
     $dataCountry=extractDataCountry($coutry);
+    //var_dump($dataCountry);
+
     $listCountrys=extractDataCountrys();
-    
+    //var_dump($listCountrys);
 ?>
 
 <!DOCTYPE html>
@@ -138,34 +140,30 @@
                                 <div class="row justify-content-start">
                                     <div class="col-4 pr-1 pl-0">
                                         <select required class="input- form-control" id="exampleFormControlSelect1">
-                                            <option>
-                                                <span>&#127466;| 231</span>
-                                            </option>
+                                            <?php
+                                            for ($i=0; $i < count($listCountrys); $i++) { 
 
-                                            <option>
-                                                <span>&#x1f1e6;| 231</span>
-                                            </option>
+                                                if($listCountrys[$i]->alpha2Code == $dataCountry[0]->alpha2Code){
+                                                    echo "
+                                                    <option selected=\"selected\"  value=\"+".$listCountrys[$i]->callingCodes[0]."\">
+                                                            <span>".generateFlag(strtolower($listCountrys[$i]->alpha2Code),$abcu)." | +".$listCountrys[$i]->callingCodes[0]."</span>
+                                                    </option>";
+                                                }else{
+                                                    echo "
+                                                    <option value=\"+".$listCountrys[$i]->callingCodes[0]."\">
+                                                            <span>".generateFlag(strtolower($listCountrys[$i]->alpha2Code),$abcu)." | +".$listCountrys[$i]->callingCodes[0]."</span>
+                                                    </option>";
+                                                }
+                                                    
 
-                                            <option>
-                                                <span>&#x1f1e6;| 231</span>
-                                            </option>
-
-                                            <option>
-                                                <span>| 231</span>
-                                            </option>
-
-                                            <option>
-                                                <span>&#x1f1e6;| 231</span>
-                                            </option>
-
-                                            <option>
-                                                <span>&#x1f1e6;| 231</span>
-                                            </option>
+                                            }
+                                            
+                                            ?>
                                         </select>
 
                                     </div>
                                     <div class="col-8">
-                                        <input type="tel" required class="input- form-control" id="input-telf" aria-describedby="telfHelp" placeholder="ingrese teléfono">
+                                        <input type="tel" maxlength="20" required class="input- form-control" id="input-telf" aria-describedby="telfHelp" placeholder="ingrese teléfono">
                                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                     </div>
                                 </div>

@@ -5,7 +5,7 @@
     $index=0;
     for($i=0x1F1E6; $i<=0x1F1FF; $i++){
         $abcu[$index]="&#$i;";
-        echo $abcu[$index];
+        ///echo $abcu[$index];
         $index++;
     }
     //print_r($abcu);

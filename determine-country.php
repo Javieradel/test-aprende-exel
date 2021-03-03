@@ -14,13 +14,13 @@ return $dataArray->geoplugin_countryName;
 }
 function extractDataCountrys(){
     
-    $dataArray = json_decode(file_get_contents("https://restcountries.eu/rest/v2/all?callingCodes;alpha2Code"));
+    $dataArray = json_decode(file_get_contents("https://restcountries.eu/rest/v2/all?fields=name;callingCodes;alpha2Code"));
     //print_r($dataArray);
     return $dataArray;
 }
 function extractDataCountry($country){
     
-    $dataArray = json_decode(file_get_contents("https://restcountries.eu/rest/v2/name/$country?fields=name;flag;callingCodes;alpha2Code"));
+    $dataArray = json_decode(file_get_contents("https://restcountries.eu/rest/v2/name/$country?fields=name;callingCodes;alpha2Code"));
     //print_r($dataArray);
     
     return $dataArray;
