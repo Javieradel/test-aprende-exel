@@ -7,6 +7,10 @@ const entrance = 'animate__fadeInRight';
 const entrance2 = 'animate__fadeInLeft';
 
 const _exit = 'animate__fadeOutLeft';
+
+const vName = /^[a-zA-Z\s]*$/;
+const vTelf = /^\+([0-9|\s])+$/;
+const vEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 //ELEMENTS
 //para Cambiar entre etapas
 //btns
@@ -21,7 +25,30 @@ console.log('etapas', steps);
 //current step
 let current;
 
-// status bar
+//Validation and data
+
+const inputs = document.querySelectorAll('.input-');
+console.log('inputs', inputs);
+// error log
+let errorInputs = {
+    name: {
+        status: '',
+        message: []
+    },
+    email: {
+        status: '',
+        message: []
+    },
+    telf: {
+        status: '',
+        message: []
+    },
+    policy: {
+        status: '',
+        message: []
+    },
+};
+
 function setInitStatus() {
     //set start status
 
@@ -134,8 +161,21 @@ function backHandler(actuate, state, isError) {
     }
 }
 
+function validarNombre(input) {
+    // /^[a-zA-Z\s]*$/
+    return vName.test(input);
+}
 
+function validarTelf(input) {
+    // /^\+([0-9|\s])+$/
 
+    return vTelf.test(input)
+}
+
+function validarEmail(input) {
+    // ^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$
+    return vEmail.test(input);
+}
 
 window.onload = () => {
     setInitStatus();
@@ -146,4 +186,59 @@ btnNext.addEventListener('click', (e) => {
 
 btnBack.addEventListener('click', (e) => {
     backHandler(btnBack, steps);
+});
+
+//activate inputs
+/*inputs.forEach((element)=>{
+    
+    element.addEventListener(()=>{
+        
+    });
+});*/
+//name
+inputs[0].addEventListener('blur', (e) => {
+    console.log(e.target.value);
+
+    let value = e.target.value;
+
+    if (value.length > 80) {
+
+        errorInputs.name.status = 'error';
+        errorInputs.name.message.push('Nombre muy largo');
+
+    } else {
+        errorInputs.name.status = '';
+        errorInputs.name.message.pop();
+    }
+    if (value.length < 4) {
+
+        errorInputs.name.status = 'error';
+        errorInputs.name.message.push('Nombre muy corto');
+
+    } else {
+
+        errorInputs.name.status = '';
+        errorInputs.name.message.pop();
+    }
+    if (!validarNombre(value)) {
+        errorInputs.name.status = 'error';
+        errorInputs.name.message.push('Formato invalido');
+    } else {
+        errorInputs.name.status = '';
+        errorInputs.name.message.pop();
+    }
+
+    if (errorInputs.name.status == 'error') {
+
+        inputs[0].classList.add('is-invalid');
+        btnNext.classList.remove('btn-success');
+        btnNext.setAttribute('disabled', 'disabled');
+
+    } else {
+
+        btnNext.classList.add('btn-success');
+        btnNext.removeAttribute('disabled');
+        errorInputs.name.status = '';
+        errorInputs.name.message.pop();
+    }
 });

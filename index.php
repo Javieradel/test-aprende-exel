@@ -1,3 +1,16 @@
+<?php
+    $develop='true'; //$develop='false';
+    require_once('./determine-country.php');
+    require_once('./list-flags.php');
+    
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $develop ? $ip = '45.186.147.43' : $ip = $_SERVER['REMOTE_ADDR'];
+    $coutry= determineCt($ip);
+    $dataCountry=extractDataCountry($coutry);
+    $listCountrys=extractDataCountrys();
+    
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
