@@ -1,4 +1,5 @@
 <?php
+session_start();
     $develop='true'; //$develop='false';
     require_once('./determine-country.php');
     require_once('./list-flags.php');
@@ -6,7 +7,9 @@
     $ip = $_SERVER['REMOTE_ADDR'];
     $develop ? $ip = '45.186.147.43' : $ip = $_SERVER['REMOTE_ADDR'];
     $coutry= determineCt($ip);
+    
     $dataCountry=extractDataCountry($coutry);
+    $_SESSION['dataCountry']= $dataCountry;
     //var_dump($dataCountry);
 
     $listCountrys=extractDataCountrys();
@@ -27,7 +30,6 @@
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <!-- VENDOR -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
@@ -49,7 +51,7 @@
                     <h2>Postulación</h2>
                 </li>
                 <li class="col-4 col-md-2">
-                    <a href="#">Contact</a>
+                    <a href="wa.link/rm2p1b">Contact</a>
                 </li>
             </ul>
         </nav>
@@ -63,14 +65,14 @@
                 </h2>
             </header>
 
-            <main id="form-container" class="form-container row justify-content-center">
+            <main id="form-container" class="form-container  row justify-content-center">
                 <article class="sub-cont col-11 col-md-9 col-lg-6 p-0">
 
                     <div class="progress">
                         <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
 
-                    <form class="form-steped row justify-content-center align-content-center">
+                    <form  method="post" action="form.php"  class="form-steped row justify-content-center align-content-center">
 
                         <div id="step-1" class="step  animate__animated act d-none form-group col-10">
 
@@ -88,7 +90,7 @@
                                 </div>
                             </label>
 
-                            <input type="text" requiered class="input- form-control" id="input-name" aria-describedby="nameHelp" placeholder="Ejem: Peter Dallar" required>
+                            <input type="text" name="name" requiered class="input- form-control" id="input-name" aria-describedby="nameHelp" placeholder="Ejem: Peter Dallar" required>
 
                         </div>
 
@@ -108,7 +110,7 @@
                                 </div>
                             </label>
 
-                            <input type="email" required class="input- form-control" id="input-email" aria-describedby="emailHelp" placeholder="ejemplo@ejemplo.com">
+                            <input type="email" minlength="5" name="email" required class="input- form-control" id="input-email" aria-describedby="emailHelp" placeholder="ejemplo@ejemplo.com">
 
                         </div>
 
@@ -161,7 +163,7 @@
 
                                     </div>
                                     <div class="col-8">
-                                        <input type="tel" maxlength="20" required class="input- form-control" id="input-telf" aria-describedby="telfHelp" placeholder="ingrese teléfono">
+                                        <input type="tel" name="telf" maxlength="20" required class="input- form-control" id="input-telf" aria-describedby="telfHelp" placeholder="ingrese teléfono">
                                     </div>
                                 </div>
                             </div>
@@ -181,24 +183,27 @@
                                         <label class="form-check-label" for="exampleCheck1">Acepto los términos</label>
 
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="step-5" class="step   animate__animated  d-none form-check col-10">
+                            <div class="container-fluid ">
+                                <div class="row">
+
                                     <div class="col-12 submit ">
                                         <button type="submit" class="btn btn-primary w-75 ">Enviar</button>
                                     </div>
                                 </div>
 
                             </div>
-
-
-
-
                         </div>
 
                     </form>
                     <div class="nav-btn  container">
                         <nav class="row justify-content-between">
-                            <button id="btn-back" class="col-4 btn btn-light"> &lt; </button>
+                            <button  id="btn-back" class="col-4 btn btn-light"> &lt; </button>
                             <!--BTN SUCCESS == NEXT-->
-                            <button id="btn-next" class="col-4 btn"> &gt; </button>
+                            <button disabled id="btn-next" class="col-4 btn"> &gt; </button>
                         </nav>
                     </div>
 
@@ -207,9 +212,6 @@
         </section>
     </main>
     <footer></footer>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
     <script src="./assets/js/index.js"></script>
 </body>

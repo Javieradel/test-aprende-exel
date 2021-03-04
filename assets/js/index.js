@@ -71,7 +71,7 @@ function manStatusBar(obj, status) {
 }
 // change on steps
 function nextHandle(actuate, state, isError) {
-
+    actuate.setAttribute('disabled', 'disabled');
     //out current
     if (state[current + 1] != undefined) {
         //state[current].classList.add(_exit);
@@ -91,7 +91,15 @@ function nextHandle(actuate, state, isError) {
     //show next
     if (state[current + 1] != undefined) {
         current++;
-
+        if (current == steps.length - 1) {
+            inputs.forEach((element) => {
+                element.setAttribute('disabled', 'disabled');
+            });
+            steps.forEach((element) => {
+                element.classList.remove(classHide);
+                element.classList.add(entrance);
+            });
+        }
         manStatusBar(statusBar, (((current + 1) * 100) / state.length));
 
         //console.log('state', current);
@@ -136,8 +144,17 @@ function backHandler(actuate, state, isError) {
     //show next
     if (state[current - 1] != undefined) {
 
-        current--;
+        if (current == steps.length - 1) {
+            inputs.forEach((element) => {
+                element.removeAttribute('disabled');
+            });
+            steps.forEach((element) => {
+                element.classList.add(classHide);
+                element.classList.remove(entrance);
 
+            });
+        }
+        current--;
         manStatusBar(statusBar, (((current + 1) * 100) / state.length));
 
         //console.log('state', current);
@@ -160,6 +177,8 @@ function backHandler(actuate, state, isError) {
         actuate.removeAttribute('disabled');
     }
 }
+
+
 
 function showError(message, obj) {
     //<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
@@ -203,13 +222,40 @@ function validarNombre(input) {
 
 function validarTelf(input) {
     // /^\+([0-9|\s])+$/
+    if (input.length < 4) {
 
-    return vTelf.test(input)
+        errorInputs.name.status = 'error';
+        errorInputs.name.message = 'Teléfono muy corto';
+        //console.log(errorInputs.name.message);
+        return false;
+    }
+
+    if (!vTelf.test(input)) {
+        errorInputs.name.status = 'error';
+        errorInputs.name.message = 'formato invalido';
+
+    }
+    return true;
+
 }
 
 function validarEmail(input) {
     // ^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$
-    return vEmail.test(input);
+    if (input.length < 4) {
+
+        errorInputs.name.status = 'error';
+        errorInputs.name.message = 'texto muy corto';
+        //console.log(errorInputs.name.message);
+        return false;
+    }
+
+    if (!vEmail.test(input)) {
+        errorInputs.telf.status = 'error';
+        errorInputs.telf.message = 'formato invalido';
+        //console.log(errorInputs.name.message);
+        return false;
+    }
+    return true;
 }
 
 window.onload = () => {
@@ -250,6 +296,56 @@ inputs[0].addEventListener('blur', (e) => {
 
     } else {
         inputs[0].classList.remove('is-invalid');
+        btnNext.removeAttribute('disabled');
+        btnNext.classList.add('btn-success');
+        hideError(errS);
+        //errorInputs.name.status = '';
+        //errorInputs.name.message.pop();
+    }
+
+
+});
+inputs[1].addEventListener('blur', (e) => {
+
+    let value = e.target.value;
+    //console.log('length', value.length);
+    inputs[1].parentElement.lastChild.innerText = '';
+
+    if (!validarEmail(value)) {
+        console.log(errorInputs.email);
+
+        inputs[1].classList.add('is-invalid');
+        btnNext.classList.remove('btn-success');
+        btnNext.setAttribute('disabled', 'disabled');
+        errS = showError(errorInputs.email.message, inputs[1].parentElement);
+
+    } else {
+        inputs[1].classList.remove('is-invalid');
+        btnNext.removeAttribute('disabled');
+        btnNext.classList.add('btn-success');
+        hideError(errS);
+        //errorInputs.name.status = '';
+        //errorInputs.name.message.pop();
+    }
+
+
+});
+inputs[3].addEventListener('blur', (e) => {
+
+    let value = e.target.value;
+    //console.log('length', value.length);
+    inputs[3].parentElement.lastChild.innerText = '';
+
+    if (!validarTelf(value)) {
+        console.log(errorInputs.telf);
+
+        inputs[3].classList.add('is-invalid');
+        btnNext.classList.remove('btn-success');
+        btnNext.setAttribute('disabled', 'disabled');
+        errS = showError(errorInputs.telf.message, inputs[3].parentElement);
+
+    } else {
+        inputs[3].classList.remove('is-invalid');
         btnNext.removeAttribute('disabled');
         btnNext.classList.add('btn-success');
         hideError(errS);
