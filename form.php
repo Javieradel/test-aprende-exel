@@ -62,7 +62,7 @@ session_start();
         </div>
     </main>
     <footer></footer>
-    <!--<script> window.onload=()=>{window.history.replaceState(null,'',"gracias-<?php echo $_SESSION['dataCountry'][0]->alpha2Code?>.html");}-->
+     <script> window.onload=()=>{window.history.replaceState(null,'',"gracias-<?php echo $_SESSION['dataCountry'][0]->alpha2Code?>.html");}
 </script>
 </body>
 

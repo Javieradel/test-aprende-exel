@@ -8,8 +8,8 @@ const entrance2 = 'animate__fadeInLeft';
 
 const _exit = 'animate__fadeOutLeft';
 
-const vName = /^[a-zA-Z\s]*$/;
-const vTelf = /^\+([0-9|\s])+$/;
+const vName = /^[A-Z][a-z]+\s[A-Z][a-z]+$/;
+const vTelf = /^\d{6,15}$/;
 const vEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 //ELEMENTS
 //para Cambiar entre etapas
@@ -71,7 +71,16 @@ function manStatusBar(obj, status) {
 }
 // change on steps
 function nextHandle(actuate, state, isError) {
-    actuate.setAttribute('disabled', 'disabled');
+    console.log('checked', inputs[4].checkValidity());
+    if (!inputs[4].checkValidity()) {
+
+        actuate.setAttribute('disabled', 'disabled');
+        actuate.classList.remove('btn-success');
+
+    } else {
+        actuate.removeAttribute('disabled');
+        actuate.classList.add('btn-success');
+    }
     //out current
     if (state[current + 1] != undefined) {
         //state[current].classList.add(_exit);
@@ -113,17 +122,17 @@ function nextHandle(actuate, state, isError) {
     } else {
         actuate.setAttribute('disabled', 'disabled');
     }
-    if (current > 0) {
+    /*if (current > 0) {
         actuate.removeAttribute('disabled');
     }
     if (current < state.length - 1) {
         actuate.removeAttribute('disabled');
-    }
+    }*/
 
 }
 
 function backHandler(actuate, state, isError) {
-
+    btnNext.removeAttribute('disabled');
     //out current
     if (state[current - 1] != undefined) {
 
@@ -222,27 +231,29 @@ function validarNombre(input) {
 
 function validarTelf(input) {
     // /^\+([0-9|\s])+$/
-    if (input.length < 4) {
+    /*if (input.length < 4) {
 
         errorInputs.name.status = 'error';
         errorInputs.name.message = 'Teléfono muy corto';
         //console.log(errorInputs.name.message);
         return false;
-    }
+    }*/
 
     if (!vTelf.test(input)) {
         errorInputs.name.status = 'error';
         errorInputs.name.message = 'formato invalido';
-
+        return false;
     }
+    console.log('input mail', errorInputs.telf);
+
     return true;
 
 }
 
 function validarEmail(input) {
     // ^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$
-    if (input.length < 4) {
 
+    if (input.length < 4) {
         errorInputs.name.status = 'error';
         errorInputs.name.message = 'texto muy corto';
         //console.log(errorInputs.name.message);
@@ -255,6 +266,7 @@ function validarEmail(input) {
         //console.log(errorInputs.name.message);
         return false;
     }
+    console.log('input mail', errorInputs.email);
     return true;
 }
 
@@ -279,7 +291,7 @@ btnBack.addEventListener('click', (e) => {
 //name
 let errS;
 
-inputs[0].addEventListener('blur', (e) => {
+inputs[0].addEventListener('input', (e) => {
     console.log(e.target.value);
 
     let value = e.target.value;
@@ -305,7 +317,7 @@ inputs[0].addEventListener('blur', (e) => {
 
 
 });
-inputs[1].addEventListener('blur', (e) => {
+inputs[1].addEventListener('input', (e) => {
 
     let value = e.target.value;
     //console.log('length', value.length);
@@ -330,7 +342,7 @@ inputs[1].addEventListener('blur', (e) => {
 
 
 });
-inputs[3].addEventListener('blur', (e) => {
+inputs[3].addEventListener('input', (e) => {
 
     let value = e.target.value;
     //console.log('length', value.length);
@@ -355,3 +367,14 @@ inputs[3].addEventListener('blur', (e) => {
 
 
 });
+inputs[4].addEventListener('input', (e) => {
+    if (e.target.checkValidity()) {
+        btnNext.removeAttribute('disabled');
+        btnNext.classList.add('btn-success');
+    } else {
+        btnNext.setAttribute('disabled', 'disabled');
+        btnNext.classList.remove('btn-success');
+    }
+});
+
+console.log("checked", inputs[4].checked);

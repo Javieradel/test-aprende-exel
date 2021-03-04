@@ -51,14 +51,16 @@ session_start();
                     <h2>Postulación</h2>
                 </li>
                 <li class="col-4 col-md-2">
-                    <a href="wa.link/rm2p1b">Contact</a>
+                    <a href="https://wa.link/rm2p1b">Contácto</a>
                 </li>
             </ul>
         </nav>
     </header>
 
     <main id="root" class="root">
+
         <section class="container ">
+
             <header class="header-form row">
                 <h2 class="title-header col-auto d-block d-md-none">
                     Postulación
@@ -77,6 +79,7 @@ session_start();
                         <div id="step-1" class="step  animate__animated act d-none form-group col-10">
 
                             <label for="input-name" class="row justify-content-lg-start align-items-center pl-0">
+                                
                                 <!-- fontawesome icon pro-->
                                 <picture class="col-auto pl-0">
                                     <svg class="label-icon-in" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-user fa-w-14 fa-5x">
@@ -179,7 +182,7 @@ session_start();
                                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, asperiores ratione. Nisi nulla est facilis sed repellat facere itaque ut, expedita labore cumque! Libero corrupti eum eligendi ab ea sit.
                                         </p>
 
-                                        <input type="checkbox" required class="form-check-input" id="exampleCheck1">
+                                        <input type="checkbox"  required class="input- form-check-input" id="exampleCheck1">
                                         <label class="form-check-label" for="exampleCheck1">Acepto los términos</label>
 
                                     </div>
