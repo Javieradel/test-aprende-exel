@@ -33,19 +33,19 @@ console.log('inputs', inputs);
 let errorInputs = {
     name: {
         status: '',
-        message: []
+        message: ''
     },
     email: {
         status: '',
-        message: []
+        message: ''
     },
     telf: {
         status: '',
-        message: []
+        message: ''
     },
     policy: {
         status: '',
-        message: []
+        message: ''
     },
 };
 
@@ -87,14 +87,14 @@ function nextHandle(actuate, state, isError) {
     }
 
 
-    console.log('state', current);
+    //console.log('state', current);
     //show next
     if (state[current + 1] != undefined) {
         current++;
 
         manStatusBar(statusBar, (((current + 1) * 100) / state.length));
 
-        console.log('state', current);
+        //console.log('state', current);
         state[current].classList.remove(classHide);
         state[current].classList.add(entrance);
 
@@ -132,7 +132,7 @@ function backHandler(actuate, state, isError) {
     }
 
 
-    console.log('state', current);
+    //console.log('state', current);
     //show next
     if (state[current - 1] != undefined) {
 
@@ -140,7 +140,7 @@ function backHandler(actuate, state, isError) {
 
         manStatusBar(statusBar, (((current + 1) * 100) / state.length));
 
-        console.log('state', current);
+        //console.log('state', current);
 
         state[current].classList.remove(classHide);
         state[current].classList.add(entrance2);
@@ -161,9 +161,44 @@ function backHandler(actuate, state, isError) {
     }
 }
 
+function showError(message, obj) {
+    //<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    //console.log('error message', message);
+    const ele = document.createElement('div');
+    ele.setAttribute('class', 'd-block invalid-feedback');
+    ele.innerText = message;
+    obj.appendChild(ele);
+    return ele;
+}
+
+function hideError(obj) {
+    obj.remove();
+}
+
 function validarNombre(input) {
     // /^[a-zA-Z\s]*$/
-    return vName.test(input);
+
+    if (input.length > 80) {
+        errorInputs.name.status = 'error';
+        errorInputs.name.message = 'Nombre muy largo';
+        //console.log(errorInputs.name.message);
+        return false;
+    }
+
+    if (input.length < 4) {
+
+        errorInputs.name.status = 'error';
+        errorInputs.name.message = 'Nombre muy corto';
+        //console.log(errorInputs.name.message);
+        return false;
+    }
+    if (!vName.test(input)) {
+        errorInputs.name.status = 'error';
+        errorInputs.name.message = 'formato invalido';
+        //console.log(errorInputs.name.message);
+        return false;
+    }
+    return true;
 }
 
 function validarTelf(input) {
@@ -196,49 +231,31 @@ btnBack.addEventListener('click', (e) => {
     });
 });*/
 //name
+let errS;
+
 inputs[0].addEventListener('blur', (e) => {
     console.log(e.target.value);
 
     let value = e.target.value;
+    console.log('length', value.length);
+    inputs[0].parentElement.lastChild.innerText = '';
 
-    if (value.length > 80) {
-
-        errorInputs.name.status = 'error';
-        errorInputs.name.message.push('Nombre muy largo');
-
-    } else {
-        errorInputs.name.status = '';
-        errorInputs.name.message.pop();
-    }
-    if (value.length < 4) {
-
-        errorInputs.name.status = 'error';
-        errorInputs.name.message.push('Nombre muy corto');
-
-    } else {
-
-        errorInputs.name.status = '';
-        errorInputs.name.message.pop();
-    }
     if (!validarNombre(value)) {
-        errorInputs.name.status = 'error';
-        errorInputs.name.message.push('Formato invalido');
-    } else {
-        errorInputs.name.status = '';
-        errorInputs.name.message.pop();
-    }
-
-    if (errorInputs.name.status == 'error') {
+        console.log(errorInputs.name);
 
         inputs[0].classList.add('is-invalid');
         btnNext.classList.remove('btn-success');
         btnNext.setAttribute('disabled', 'disabled');
+        errS = showError(errorInputs.name.message, inputs[0].parentElement);
 
     } else {
-
-        btnNext.classList.add('btn-success');
+        inputs[0].classList.remove('is-invalid');
         btnNext.removeAttribute('disabled');
-        errorInputs.name.status = '';
-        errorInputs.name.message.pop();
+        btnNext.classList.add('btn-success');
+        hideError(errS);
+        //errorInputs.name.status = '';
+        //errorInputs.name.message.pop();
     }
+
+
 });

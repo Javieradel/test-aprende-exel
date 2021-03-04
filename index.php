@@ -89,7 +89,6 @@
                             </label>
 
                             <input type="text" requiered class="input- form-control" id="input-name" aria-describedby="nameHelp" placeholder="Ejem: Peter Dallar" required>
-                            <small id="nameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 
                         </div>
 
@@ -110,7 +109,6 @@
                             </label>
 
                             <input type="email" required class="input- form-control" id="input-email" aria-describedby="emailHelp" placeholder="ejemplo@ejemplo.com">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 
                         </div>
 
@@ -164,7 +162,6 @@
                                     </div>
                                     <div class="col-8">
                                         <input type="tel" maxlength="20" required class="input- form-control" id="input-telf" aria-describedby="telfHelp" placeholder="ingrese teléfono">
-                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                     </div>
                                 </div>
                             </div>
